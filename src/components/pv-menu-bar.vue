@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <pv-menubar :model="items">
+
+    <pv-menubar :model="items" >
       <template #start>
         <img
           alt="logo"
           src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-          height="60"
+          height="40"
           class="mr-5"
         />
       </template>
@@ -14,7 +14,7 @@
 
       </template>
     </pv-menubar>
-  </div>
+
 </template>
 
 <script>
