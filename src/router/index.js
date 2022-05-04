@@ -29,7 +29,7 @@ const router = createRouter({
     },
     {
       path: "/",
-      redirect: "sign-up",
+      redirect: "sign-in",
     },
     {
       path: "/machines",

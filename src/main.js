@@ -14,6 +14,7 @@ import "primeflex/primeflex.css";
 import Menubar from "primevue/menubar";
 import InputText from "primevue/inputtext";
 import TieredMenu from 'primevue/tieredmenu';
+import PvLayoutMain from "./components/pv-layout-main.vue";
 
 
 const app = createApp(App);
@@ -25,5 +26,6 @@ app.use(PrimeVue, { ripple: true });
 app.component("pv-menubar", Menubar);
 app.component("pv-input-text", InputText);
 app.component("tired-menu", TieredMenu);
+app.component("pv-layout",PvLayoutMain);
 
 app.mount("#app");

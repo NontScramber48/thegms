@@ -1,6 +1,6 @@
 <template>
 
-    <pv-menubar :model="items" >
+    <pv-menubar :model="items" class="">
       <template #start>
         <img
           alt="logo"

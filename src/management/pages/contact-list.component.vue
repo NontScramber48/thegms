@@ -1,38 +1,27 @@
 <template>
   <pv-menu-bar></pv-menu-bar>
   <pv-tired-menu></pv-tired-menu>
-  <div class="layout-main-container">
-    <div class="layout-main">
-      <h1>THESE ARE MY CONTACTS</h1>
-    </div>
-  </div>
+  <pv-layout-main>
+    <h1>THESE ARE MY CONTACTS</h1>
+  </pv-layout-main>
+
+
 </template>
 
 <script>
 import pvMenuBar from "../../components/pv-menu-bar.vue";
 import pvTiredMenu from "../../components/pv-tired-menu.vue";
+import pvLayoutMain from "../../components/pv-layout-main.vue";
 export default {
   name: "contact-list.component",
   components:{
     pvMenuBar,
-    pvTiredMenu
+    pvTiredMenu,
+    pvLayoutMain,
   },
 };
 </script>
 
 <style scoped>
-.layout-main-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin-left:300px;
-  justify-content: space-between;
-  padding: 7rem 2rem 2rem 4rem;
-}
 
-.layout-main {
-  flex: 1 1 auto;
-  clear: both;
-  position: relative;
-}
 </style>
