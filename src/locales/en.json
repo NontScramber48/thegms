@@ -1,0 +1,11 @@
+{
+  "search": "Search",
+  "navigation": {
+    "home": "Home",
+    "inventory": "Inventory",
+    "contacts": "Contacts",
+    "machines": "Machines",
+    "finances": "Finances",
+    "logout": "Logout"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "machines": [
+    {
+      "id": 1,
+      "name": "Machine 1",
+      "description": "none",
+      "lifetime": "five years",
+      "need maintenance": false
+    },
+    {
+      "id": 2,
+      "name": "Machine 2",
+      "description": "none",
+      "lifetime": "five years",
+      "need maintenance": false
+    },
+    {
+      "id": 3,
+      "name": "Machine 3",
+      "description": "none",
+      "lifetime": "five years",
+      "need maintenance": false
+    },
+    {
+      "id": 4,
+      "name": "Machine 4",
+      "description": "none",
+      "lifetime": "five years",
+      "need maintenance": false
+    },
+    {
+      "id": 5,
+      "name": "Machine 5",
+      "description": "none",
+      "lifetime": "five years",
+      "need maintenance": false
+    }
+  ],
+  "finances": [
+    {
+      "id": 1,
+      "name": "person 1",
+      "date": "01/04/2020",
+      "quantity": 200,
+      "type": "spent"
+    },
+    {
+      "id": 2,
+      "name": "person 2",
+      "date": "01/04/2020",
+      "quantity": 300,
+      "type": "income"
+    },
+    {
+      "id": 3,
+      "name": "person 3",
+      "date": "01/04/2020",
+      "quantity": 500,
+      "type": "income"
+    },
+    {
+      "id": 4,
+      "name": "person 4",
+      "date": "01/04/2020",
+      "quantity": 100,
+      "type": "spent"
+    },
+    {
+      "id": 5,
+      "name": "person 5",
+      "date": "01/04/2020",
+      "quantity": 600,
+      "type": "income"
+    }
+  ]
+}

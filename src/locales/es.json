@@ -1,0 +1,11 @@
+{
+  "search": "Buscar",
+  "navigation": {
+    "home": "Inicio",
+    "inventory": "Inventario",
+    "contacts": "Contactos",
+    "machines": "Maquinas",
+    "finances": "Finanzas",
+    "logout": "Cerrar Sesion"
+  }
+}
