@@ -9,7 +9,7 @@ import "primevue/resources/themes/mdc-light-indigo/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
-
+import ToastService from 'primevue/toastservice';
 
 import Menubar from "primevue/menubar";
 import InputText from "primevue/inputtext";
@@ -32,6 +32,9 @@ import InputSwitch from 'primevue/inputswitch';
 import Chip from 'primevue/chip';
 import Avatar from 'primevue/avatar';
 import Tree from 'primevue/tree';
+import RadioButton from 'primevue/radiobutton';
+import InputNumber from 'primevue/inputnumber';
+import FileUpload from 'primevue/fileupload';
 
 
 
@@ -74,7 +77,9 @@ app.component("input-switch", InputSwitch);
 app.component("pv-chip", Chip);
 app.component("pv-tree-basic", Tree);
 app.component("pv-avatar", Avatar);
-
+app.component("pv-inputnumber",InputNumber);
+app.component("pv-fileupload",FileUpload);
+app.component("pv-radiobutton",RadioButton);
 
 
 app.mount("#app");
