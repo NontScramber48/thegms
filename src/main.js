@@ -29,6 +29,10 @@ import Calendar from 'primevue/calendar';
 import Checkbox from 'primevue/checkbox';
 import Password from 'primevue/password';
 import InputSwitch from 'primevue/inputswitch';
+import Chip from 'primevue/chip';
+import Avatar from 'primevue/avatar';
+import Tree from 'primevue/tree';
+
 
 
 const app = createApp(App);
@@ -67,6 +71,10 @@ app.component("pv-calendar",Calendar);
 app.component("pv-password",Password);
 app.component("pv-checkbox",Checkbox)
 app.component("input-switch", InputSwitch);
+app.component("pv-chip", Chip);
+app.component("pv-tree-basic", Tree);
+app.component("pv-avatar", Avatar);
+
 
 
 app.mount("#app");
