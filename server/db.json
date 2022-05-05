@@ -1,13 +1,6 @@
 {
   "machines": [
     {
-      "id": 7,
-      "name": "Cliente_Cine s dsds",
-      "description": "dsadd dsds ",
-      "lifetime": "dasdasdsd ds",
-      "active": true
-    },
-    {
       "id": 8,
       "name": "dsds",
       "description": "dsdsdasd",
@@ -34,6 +27,13 @@
       "description": "dsdsds",
       "lifetime": "dsdsds",
       "active": false
+    },
+    {
+      "id": 12,
+      "name": "fsddsd",
+      "description": "dsdsds",
+      "lifetime": "dsdsds",
+      "active": true
     }
   ],
   "finances": [
@@ -57,6 +57,13 @@
       "day": "dasdsad",
       "quantity": "dasdsad",
       "type": false
+    },
+    {
+      "id": 10,
+      "name": "sasas",
+      "day": "asagsgsdf",
+      "quantity": "dsfhfrgsfd",
+      "type": true
     }
   ]
 }

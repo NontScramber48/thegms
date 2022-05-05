@@ -19,7 +19,7 @@ export default {
   min-height: 90vh;
   margin-left:300px;
   justify-content: space-between;
-  padding: 3rem 2rem 2rem 4rem;
+  padding: 2rem 2rem 1rem 2rem;
 }
 
 .layout-main {

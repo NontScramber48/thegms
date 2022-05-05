@@ -5,7 +5,7 @@ import PrimeVue from "primevue/config";
 
 
 // PrimeVue Theme
-import "primevue/resources/themes/saga-blue/theme.css";
+import "primevue/resources/themes/mdc-light-indigo/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
@@ -25,16 +25,34 @@ import Sidebar from "primevue/sidebar";
 import Dropdown from "primevue/dropdown";
 import Tag from "primevue/tag";
 import Textarea from "primevue/textarea";
+import Calendar from 'primevue/calendar';
+import Checkbox from 'primevue/checkbox';
+import Password from 'primevue/password';
+import InputSwitch from 'primevue/inputswitch';
+
 
 const app = createApp(App);
 
 app.use(router);
 
-app.use(PrimeVue, { ripple: true });
+app.use(PrimeVue, {ripple: true },{
+  locale: {
+    home: 'Inicio',
+    inventory: 'Inventario',
+    contacts: 'Contactos',
+    machines: 'Maquinas',
+    finances: 'Finanzas',
+    logout: 'Cerrar Sesion',
+    notifications: 'Notificaciones',
+    profile: 'Perfil'
+  }
+});
+
+app.use(ToastService);
 
 app.component("pv-menubar", Menubar);
 app.component("pv-input-text", InputText);
-app.component("tired-menu", TieredMenu);
+app.component("tiered-menu", TieredMenu);
 app.component("pv-data-table", DataTable);
 app.component("pv-column", Column);
 app.component("pv-button", Button);
@@ -45,6 +63,10 @@ app.component("pv-sidebar", Sidebar);
 app.component("pv-dropdown", Dropdown);
 app.component("pv-tag", Tag);
 app.component("pv-textarea",Textarea);
+app.component("pv-calendar",Calendar);
+app.component("pv-password",Password);
+app.component("pv-checkbox",Checkbox)
+app.component("input-switch", InputSwitch);
 
 
 app.mount("#app");

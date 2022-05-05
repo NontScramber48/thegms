@@ -1,6 +1,6 @@
 <template>
   <pv-menu-bar></pv-menu-bar>
-  <pv-tired-menu></pv-tired-menu>
+  <pv-tiered-menu></pv-tiered-menu>
   <pv-layout-main>
     <h1>FINANCES</h1>
     <div>
@@ -261,7 +261,7 @@
 
 <script>
 import pvMenuBar from "../../components/pv-menu-bar.vue";
-import pvTiredMenu from "../../components/pv-tired-menu.vue";
+import pvTieredMenu from "../../components/pv-tiered-menu.vue";
 import pvLayoutMain from "../../components/pv-layout-main.vue";
 import { FinancesApiService } from "../services/finances-api.service";
 import { FilterMatchMode } from "primevue/api";
@@ -269,7 +269,7 @@ export default {
   name: "finance-list.component",
   components: {
     pvMenuBar,
-    pvTiredMenu,
+    pvTieredMenu,
     pvLayoutMain,
   },
   data() {

@@ -10,7 +10,6 @@
         />
 
       </template>
-
       <template #end>
         <pv-input-text placeholder="Search" type="text" />
       </template>
@@ -23,6 +22,7 @@ export default {
   name: "pv-menu-bar",
   data() {
     return {
+      checked: false,
       items: [
         {
           label: "Notifications",
@@ -38,6 +38,7 @@ export default {
       ],
     };
   },
+
 };
 </script>
 

@@ -1,18 +1,20 @@
 <template>
   <div class="layout-sidebar align-content-center">
-    <tired-menu :model="items" class="bg-blue-700 block font-normal " ></tired-menu>
-
+    <tiered-menu :model="items" class="bg-blue-700 block font-normal " >
+    </tiered-menu>
+    <input-switch class="ml-3 mt-5"  v-model="checked" ></input-switch>
   </div>
 </template>
 
 <script>
 export default {
-  name: "pv-tired-menu",
+  name: "pv-tiered-menu",
   data() {
     return {
+      checked: false,
       items: [
         {
-          label: "Home",
+          label: 'Home',
           icon: "pi pi-fw pi-home",
           to: "/home",
 
@@ -48,6 +50,12 @@ export default {
       ],
     };
   },
+  methods: {
+    changeToSpanish() {
+      this.$primevue.config.locale.home = 'Inicio';
+      this.$primevue.config.locale.inventory = 'Inventario';
+    }
+  }
 };
 </script>
 
@@ -55,11 +63,11 @@ export default {
 .layout-sidebar {
   position: absolute;
   width: 250px;
-  height: calc(100vh - 9rem);
+  height: calc(100vh - 5.5rem);
   z-index: 999;
   overflow-y: auto;
   user-select: none;
-  top: 5rem;
+  top: 5.2rem;
   left: 0.5rem;
   background-color: var(--blue-700);
   border-radius: 12px;

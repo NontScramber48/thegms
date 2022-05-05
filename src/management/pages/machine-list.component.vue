@@ -1,6 +1,6 @@
 <template>
   <pv-menu-bar></pv-menu-bar>
-  <pv-tired-menu></pv-tired-menu>
+  <pv-tiered-menu></pv-tiered-menu>
   <pv-layout-main>
     <h1>MACHINES</h1>
     <div>
@@ -261,7 +261,7 @@
 
 <script>
 import pvMenuBar from "../../components/pv-menu-bar.vue";
-import pvTiredMenu from "../../components/pv-tired-menu.vue";
+import pvTieredMenu from "../../components/pv-tiered-menu.vue";
 import pvLayoutMain from "../../components/pv-layout-main.vue";
 import { MachinesApiService } from "../services/machines-api.service";
 import { FilterMatchMode } from "primevue/api";
@@ -269,7 +269,7 @@ export default {
   name: "machine-list.component",
   components: {
     pvMenuBar,
-    pvTiredMenu,
+    pvTieredMenu,
     pvLayoutMain,
   },
   data() {

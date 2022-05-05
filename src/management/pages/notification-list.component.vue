@@ -1,6 +1,6 @@
 <template>
   <pv-menu-bar></pv-menu-bar>
-  <pv-tired-menu></pv-tired-menu>
+  <pv-tiered-menu></pv-tiered-menu>
   <pv-layout-main>
     <h1>THESE ARE MY NOTIFICATIONS</h1>
   </pv-layout-main>
@@ -8,13 +8,13 @@
 
 <script>
 import pvMenuBar from "../../components/pv-menu-bar.vue";
-import pvTiredMenu from "../../components/pv-tired-menu.vue";
+import pvTieredMenu from "../../components/pv-tiered-menu.vue";
 import pvLayoutMain from "../../components/pv-layout-main.vue";
 export default {
   name: "notification-list.component",
   components:{
     pvMenuBar,
-    pvTiredMenu,
+    pvTieredMenu,
     pvLayoutMain,
   },
 };
