@@ -1,6 +1,7 @@
 <template>
-  <div class="layout-sidebar align-content-center" style="color: red">
-    <tired-menu :model="items" class="bg-blue-700 block " ></tired-menu>
+  <div class="layout-sidebar align-content-center">
+    <tired-menu :model="items" class="bg-blue-700 block font-normal " ></tired-menu>
+
   </div>
 </template>
 
@@ -14,6 +15,7 @@ export default {
           label: "Home",
           icon: "pi pi-fw pi-home",
           to: "/home",
+
         },
         {
           label: "Inventory",
@@ -65,4 +67,5 @@ export default {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05),
     0px 1px 4px rgba(0, 0, 0, 0.08);
 }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
 
-    <pv-menubar :model="items" class="">
+    <pv-menubar :model="items" class=" flex justify-content-between">
       <template #start>
         <img
           alt="logo"
@@ -8,10 +8,11 @@
           height="40"
           class="mr-5"
         />
+
       </template>
+
       <template #end>
         <pv-input-text placeholder="Search" type="text" />
-
       </template>
     </pv-menubar>
 
@@ -27,6 +28,7 @@ export default {
           label: "Notifications",
           icon: "pi pi-fw pi-bell",
           to:"/notifications",
+
         },
         {
           label: "Profile",

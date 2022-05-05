@@ -1,76 +1,62 @@
 {
   "machines": [
     {
-      "id": 1,
-      "name": "Machine 1",
-      "description": "none",
-      "lifetime": "five years",
-      "need maintenance": false
+      "id": 7,
+      "name": "Cliente_Cine s dsds",
+      "description": "dsadd dsds ",
+      "lifetime": "dasdasdsd ds",
+      "active": true
     },
     {
-      "id": 2,
-      "name": "Machine 2",
-      "description": "none",
-      "lifetime": "five years",
-      "need maintenance": false
+      "id": 8,
+      "name": "dsds",
+      "description": "dsdsdasd",
+      "lifetime": "dasdasd",
+      "active": true
     },
     {
-      "id": 3,
-      "name": "Machine 3",
-      "description": "none",
-      "lifetime": "five years",
-      "need maintenance": false
+      "id": 9,
+      "name": "dsdaddasdasd",
+      "description": "dasdsadas",
+      "lifetime": "dasdasda",
+      "active": true
     },
     {
-      "id": 4,
-      "name": "Machine 4",
-      "description": "none",
-      "lifetime": "five years",
-      "need maintenance": false
+      "id": 10,
+      "name": "adasdasd",
+      "description": "dsadsadsadsa",
+      "lifetime": "dasdsadsadsa",
+      "active": true
     },
     {
-      "id": 5,
-      "name": "Machine 5",
-      "description": "none",
-      "lifetime": "five years",
-      "need maintenance": false
+      "id": 11,
+      "name": "Visitas_Comprobante_de_Entradas",
+      "description": "dsdsds",
+      "lifetime": "dsdsds",
+      "active": false
     }
   ],
   "finances": [
     {
-      "id": 1,
-      "name": "person 1",
-      "date": "01/04/2020",
-      "quantity": 200,
-      "type": "spent"
+      "id": 7,
+      "name": "VENTA DE PRODUCTOS dsd s",
+      "day": "12/05/2000 ds ds",
+      "quantity": "500 s ds",
+      "type": false
     },
     {
-      "id": 2,
-      "name": "person 2",
-      "date": "01/04/2020",
-      "quantity": 300,
-      "type": "income"
+      "id": 8,
+      "name": "5485454d sds",
+      "day": "569+5986d sd s",
+      "quantity": "+66545965dsd s",
+      "type": false
     },
     {
-      "id": 3,
-      "name": "person 3",
-      "date": "01/04/2020",
-      "quantity": 500,
-      "type": "income"
-    },
-    {
-      "id": 4,
-      "name": "person 4",
-      "date": "01/04/2020",
-      "quantity": 100,
-      "type": "spent"
-    },
-    {
-      "id": 5,
-      "name": "person 5",
-      "date": "01/04/2020",
-      "quantity": 600,
-      "type": "income"
+      "id": 9,
+      "name": "asdasd",
+      "day": "dasdsad",
+      "quantity": "dasdsad",
+      "type": false
     }
   ]
 }

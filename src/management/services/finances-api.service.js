@@ -1,5 +1,5 @@
 import http from "../../core/services/http-common";
-class MachinesApiService {
+export class FinancesApiService {
   getAll() {
     return http.get("/finances");
   }
@@ -15,9 +15,9 @@ class MachinesApiService {
   delete(id) {
     return http.delete(`/finances/${id}`);
   }
-  findByTitle(title) {
-    return http.get(`/finances?title=${title}`);
+  findByName(name) {
+    return http.get(`/finances?name=${name}`);
   }
 }
 
-export default new MachinesApiService();
+export default new FinancesApiService();
