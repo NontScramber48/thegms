@@ -1,7 +1,7 @@
 <template>
   <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
     <div class="text-center mb-5">
-      <img src="src/assets/Inventex.jpg" alt="Logo" height="50" class="mb-3">
+      <img src="" alt="Logo" height="50" class="mb-3">
       <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
       <span class="text-600 font-medium line-height-3">Don't have an account?</span>
       <router-link to="/sign-up">

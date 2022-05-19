@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import SignInComponent from "../management/pages/sign-in.component.vue";
-import SignUpComponent from "../management/pages/sign-up.component.vue";
-import Home from "../management/pages/home-view.component.vue";
+import SignInComponent from "../views/sign-in.component.vue";
+import SignUpComponent from "../views/sign-up.component.vue";
+import Home from "../views/home-view.component.vue";
 import Machines from "../management/pages/machine-list.component.vue";
 import Finances from "../management/pages/finance-list.component.vue";
 import Inventory from "../management/pages/inventory-list.component.vue";
 import Contacts from "../management/pages/contact-list.component.vue";
-import Profile from "../management/pages/profile-view.component.vue";
-import Notification from "../management/pages/notification-list.component.vue";
+import Profile from "../views/profile-view.component.vue";
+import Notification from "../views/notification-list.component.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

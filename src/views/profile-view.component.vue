@@ -55,10 +55,9 @@
 </template>
 
 <script>
-import pvTieredMenu from "../../components/pv-tiered-menu.vue";
-import pvMenuBar from "../../components/pv-menu-bar.vue";
-import pvLayoutMain from "../../components/pv-layout-main.vue";
-
+import pvMenuBar from "../core/components/pv-menu-bar.vue";
+import pvTieredMenu from "../core/components/pv-tiered-menu.vue";
+import pvLayoutMain from "../core/components/pv-layout-main.vue";
 export default {
   name: "profile-view.component",
   components: {
