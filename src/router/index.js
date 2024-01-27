@@ -18,18 +18,18 @@ const router = createRouter({
       name: "sign-up",
     },
     {
-      path: "/sign-in",
+      path: "/Home",
       component: SignInComponent,
-      name: "sign-in",
+      name: "Home",
     },
     {
-      path: "/home",
+      path: "/About",
       component: Home,
-      name: "home",
+      name: "About",
     },
     {
       path: "/",
-      redirect: "sign-in",
+      redirect: "Home",
     },
     {
       path: "/machines",

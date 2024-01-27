@@ -1,418 +1,239 @@
 <template>
   <pv-menu-bar></pv-menu-bar>
-  <pv-tiered-menu></pv-tiered-menu>
-  <pv-layout-main>
-    <h1>MACHINES</h1>
-    <div>
-      <div class="card">
-        <pv-toolbar class="mb-4">
-          <template #start>
-            <pv-button
-              label="New"
-              icon="pi pi-plus"
-              class="p-button-success mr-2"
-              @click="openNew"
-            />
-            <pv-button
-              label="Delete"
-              icon="pi pi-trash"
-              class="p-button-danger"
-              @click="confirmDeleteSelected"
-              :disabled="!selectedMachines || !selectedMachines.length"
-            />
-          </template>
-          <template #end>
-            <pv-button
-              label="Export"
-              icon="pi pi-upload"
-              class="p-button-help"
-              @click="exportToCSV($event)"
-            />
-          </template>
-        </pv-toolbar>
-        <pv-data-table
-          ref="dt"
-          :value="machines"
-          v-model:selection="selectedMachines"
-          dataKey="id"
-          :paginator="true"
-          :rows="10"
-          :filters="filters"
-          paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-          :rowsPerPageOptions="[5, 10, 15]"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} tutorials"
-          responsiveLayout="scroll"
-        >
-          <template #header>
-            <div
-              class="table-header flex flex-column md:flex-row md:justify-content-between"
-            >
-              <h5 class="mb-2 md:m-0 p-as-md-center text-xl">
-                Manage Machines
-              </h5>
-              <span class="p-input-icon-left"
-                ><i class="pi pi-search" /><pv-input-text
-                  v-model="filters['global'].value"
-                  placeholder="Search..."
-                />
-              </span>
-            </div>
-          </template>
-          <pv-column
-            selectionMode="multiple"
-            style="width: 3rem"
-            :exportable="false"
-          ></pv-column>
-          <pv-column
-            field="id"
-            header="Id"
-            :sortable="true"
-            style="min-width: 3rem"
-          ></pv-column>
-          <pv-column
-            field="name"
-            header="Name"
-            :sortable="true"
-            style="min-width: 8rem"
-          ></pv-column>
-          <pv-column
-            field="description"
-            header="Description"
-            :sortable="true"
-            style="min-width: 12rem"
-          ></pv-column>
-          <pv-column
-            field="lifetime"
-            header="Lifetime"
-            :sortable="true"
-            style="min-width: 12rem"
-          ></pv-column>
-          <pv-column
-            field="status"
-            header="Status"
-            :sortable="true"
-            style="min-width: 12rem"
-          >
-            <template #body="slotProps">
-              <pv-tag
-                v-if="slotProps.data.status === 'Published'"
-                severity="success"
-                >{{ slotProps.data.status }}</pv-tag
-              >
-              <pv-tag v-else severity="info">{{
-                slotProps.data.status
-              }}</pv-tag>
-            </template>
-          </pv-column>
-          <pv-column :exportable="false" style="min-width: 8rem">
-            <template #body="slotProps">
-              <pv-button
-                icon="pi pi-pencil"
-                class="p-button-text p-button-rounded"
-                @click="editMachine(slotProps.data)"
-              />
-              <pv-button
-                icon="pi pi-trash"
-                class="p-button-text p-button-rounded"
-                @click="confirmDeleteMachine(slotProps.data)"
-              />
-            </template>
-          </pv-column>
-        </pv-data-table>
-      </div>
-      <pv-dialog
-        v-model:visible="machineDialog"
-        :style="{ width: '450px' }"
-        header="Machine Information"
-        :modal="true"
-        class="p-fluid"
-      >
-        <div class="field">
-          <span class="p-float-label">
-            <pv-input-text
-              type="text"
-              id="name"
-              v-model.trim="machine.name"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !machine.name }"
-            />
-            <label for="name">Name</label>
-            <small class="p-error" v-if="submitted && !machine.name"
-              >Name is required.</small
-            >
-          </span>
-        </div>
-        <div class="field">
-          <span class="p-float-label">
-            <pv-textarea
-              id="description"
-              v-model="machine.description"
-              required="false"
-              rows="2"
-              cols="2"
-            />
-            <label for="description">Description</label>
-          </span>
-        </div>
-        <div class="field">
-          <span class="p-float-label">
-            <pv-textarea
-              id="lifetime"
-              v-model="machine.lifetime"
-              required="false"
-              rows="2"
-              cols="2"
-            />
-            <label for="lifetime">Lifetime</label>
-          </span>
-        </div>
-        <div class="field">
-          <pv-dropdown
-            id="active"
-            v-model="machine.status"
-            :options="statuses"
-            optionLabel="label"
-            placeholder="Select an Status"
-          >
-            <template #value="slotProps">
-              <div v-if="slotProps.value && slotProps.value.value">
-                <span>{{ slotProps.value.label }}</span>
-              </div>
-              <div v-else-if="slotProps.value && !slotProps.value.value">
-                <span>{{ slotProps.value }}</span>
-              </div>
-              <span v-else>{{ slotProps.placeholder }}</span>
-            </template>
-          </pv-dropdown>
-        </div>
-        <template #footer>
-          <pv-button
-            label="Cancel"
-            icon="pi pi-times"
-            class="p-button-text"
-            @click="hideDialog"
-          />
-          <pv-button
-            label="Save"
-            icon="pi pi-check"
-            class="p-button-text"
-            @click="saveMachine"
-          />
-        </template>
-      </pv-dialog>
-      <pv-dialog
-        v-model:visible="deleteMachineDialog"
-        :style="{ width: '450px' }"
-        header="Confirm"
-        :modal="true"
-      >
-        <div class="confirmation-content">
-          <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-          <span v-if="machine"
-            >Are you sure you want to delete <b>{{ machine.name }}</b></span
-          >
-        </div>
-        <template #footer>
-          <pv-button
-            label="No"
-            icon="pi pi-times"
-            class="p-button-text"
-            @click="deleteMachineDialog = false"
-          />
-          <pv-button
-            label="Yes"
-            icon="pi pi-check"
-            class="p-button-text"
-            @click="deleteMachine"
-          />
-        </template>
-      </pv-dialog>
-      <pv-dialog
-        v-model:visible="deleteMachinesDialog"
-        :style="{ width: '450px' }"
-        header="Confirm"
-        :modal="true"
-      >
-        <div class="confirmation-content">
-          <i class="pi pi-exclamation-triangle mr-3" syle="font-size: 2rem" />
-          <span v-if="selectedMachines"
-            >Are you sure you want to delete the selected machines?</span
-          >
-        </div>
-        <template #footer>
-          <pv-button
-            label="No"
-            icon="pi pi-times"
-            class="p-button-text"
-            @click="deleteMachinesDialog = false"
-          />
-          <pv-button
-            label="Yes"
-            icon="pi pi-check"
-            class="p-button-text"
-            @click="deleteSelectedMachines"
-          />
-        </template>
-      </pv-dialog>
+
+  
+
+  <div class="xl:flex 2xl:flex 3xl:flex md:flex hidden">
+    <div class="flex-1 border-round px-4 py-4">
+      <img alt="GMS Image" src="@/assets/hand.png" class="w-full h-96" />
     </div>
-  </pv-layout-main>
+    <div class="flex-4 border-round"></div>
+    <div
+      class="flex-1 flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round"
+    >
+      <div class="welcome-content">
+        <h1>{{ getTranslatedText("title") }}</h1>
+        <p>{{ getTranslatedText("description") }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="xl:hidden 2xl:hidden 3xl:hidden md:hidden flex">
+    mobile
+    <div class="flex-1  border-round px-4 py-4">
+      <img alt="GMS Image" src="@/assets/hand.png" class="w-full h-96">
+    </div>
+    <div class="flex-4  border-round"></div>
+    <div class="flex-1 flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
+      <div class="welcome-content">
+        <h1>{{ getTranslatedText('title') }}</h1>
+        <p>{{ getTranslatedText('description') }}</p>
+      </div>
+    </div>
+  </div> -->
+  <div class="block xl:hidden 2xl:hidden 3xl:hidden md:hidden">
+    <!-- Show only on mobile devices -->
+    <div class="flex-1 border-round px-4 py-4">
+      <img alt="GMS Image" src="@/assets/hand.png" class="w-full h-96" />
+    </div>
+    <div class="flex-4 border-round"></div>
+    <div
+      class="flex-1 flex items-center justify-center font-bold m-2 px-5 py-3 border-round"
+    >
+      <div class="welcome-content text-center">
+        <!-- Added 'text-center' class to center text on mobile -->
+        <h1 class="text-2xl">{{ getTranslatedText("title") }}</h1>
+        <p class="text-sm">{{ getTranslatedText("description") }}</p>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script>
-import pvMenuBar from "../../core/components/pv-menu-bar.vue";
-import pvTieredMenu from "../../core/components/pv-tiered-menu.vue";
-import pvLayoutMain from "../../core/components/pv-layout-main.vue";
-import { MachinesApiService } from "../services/machines-api.service";
-import { FilterMatchMode } from "primevue/api";
-export default {
-  name: "machine-list.component",
-  components: {
-    pvMenuBar,
-    pvTieredMenu,
-    pvLayoutMain,
-  },
-  data() {
-    return {
-      machines: [],
-      machineDialog: false,
-      deleteMachineDialog: false,
-      deleteMachinesDialog: false,
-      machine: {},
-      selectedMachines: null,
-      filters: {},
-      submitted: false,
-      statuses: [
-        { label: "Active", value: "active" },
-        { label: "Inactive", value: "inactive" },
-      ],
-      machinesService: null,
-    };
-  },
-  created() {
-    this.machinesService = new MachinesApiService();
-    this.machinesService.getAll().then((response) => {
-      this.machines = response.data;
-      this.machines.forEach((machine) =>
-        this.getDisplayableMachine(machine)
-      );
-      console.log(this.machines);
-    });
-    this.initFilters();
-  },
-  methods: {
-    getDisplayableMachine(machine) {
-      machine.status = machine.active
-        ? this.statuses[0].label
-        : this.statuses[1].label;
-      return machine;
-    },
-    getStorableMachine(displayableMachine) {
-      return {
-        id: displayableMachine.id,
-        name: displayableMachine.name,
-        description: displayableMachine.description,
-        lifetime: displayableMachine.lifetime,
-        active: displayableMachine.status.label === "Active",
-      };
-    },
-    initFilters() {
-      this.filters = {
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-      };
-    },
-    findIndexById(id) {
-      return this.machines.findIndex((machine) => machine.id === id);
-    },
-    openNew() {
-      this.machine = {};
-      this.submitted = false;
-      this.machineDialog = true;
-    },
-    hideDialog() {
-      this.machineDialog = false;
-      this.submitted = false;
-    },
-    saveMachine() {
-      this.submitted = true;
-      if (this.machine.name.trim()) {
-        if (this.machine.id) {
-          this.machine = this.getStorableMachine(this.machine);
-          this.machinesService
-            .update(this.machine.id, this.machine)
-            .then((response) => {
-              this.machines[this.findIndexById(response.data.id)] =
-                this.getDisplayableMachine(response.data);
-              this.$toast.add({
-                severity: "success",
-                summary: "Successful",
-                detail: "Machine Updated",
-                life: 3000,
-              });
-              console.log(response);
-            });
-        } else {
-          this.machine.id = 0;
-          this.machine = this.getStorableMachine(this.machine);
-          this.machinesService.create(this.machine).then((response) => {
-            this.machine = this.getDisplayableMachine(response.data);
-            this.machines.push(this.machine);
-            this.$toast.add({
-              severity: "success",
-              summary: "Successful",
-              detail: "Machine Created",
-              life: 3000,
-            });
-            console.log(response);
-          });
-        }
-      }
-      this.machineDialog = false;
-      this.machine = {};
-    },
-    editMachine(machine) {
-      this.machine = { ...machine };
-      this.machineDialog = true;
-    },
-    confirmDeleteMachine(machine) {
-      this.machine = machine;
-      this.deleteMachineDialog = true;
-    },
-    deleteMachine() {
-      this.machinesService.delete(this.machine.id).then((response) => {
-        this.machines = this.machines.filter(
-          (t) => t.id !== this.machine.id
-        );
-        this.deleteMachineDialog = false;
-        this.machine = {};
-        this.$toast.add({
-          severity: "success",
-          summary: "Successful",
-          detail: "Machine Deleted",
-          life: 3000,
-        });
-        console.log(response);
-      });
-    },
-    exportToCSV() {
-      this.$refs.dt.exportCSV();
-    },
-    confirmDeleteSelected() {
-      this.deleteMachinesDialog = true;
-    },
-    deleteSelectedMachines() {
-      this.selectedMachines.forEach((machine) => {
-        this.machinesService.delete(machine.id).then((response) => {
-          this.machines = this.machines.filter(
-            (t) => t.id !== this.machine.id
-          );
-          console.log(response);
-        });
-      });
-      this.deleteMachinesDialog = false;
-    },
+<script setup>
+import { ref, onMounted } from "vue";
+import InputSwitch from "primevue/inputswitch";
+import pvMenuBar from "/src/core/components/pv-menu-bar.vue"; 
+
+const switchState = ref(false);
+
+const myObject = ref({
+  src: "/src/assets/us-flag.png",
+  language: "ENG",
+  title: "Our customersnkjbkbhjkvi",
+  description:
+    "Welcome to the About Us page of Global Manpower Services. We are dedicated to providing top-tier workforce solutions, bridging the gap between skilled individuals and organizations seeking the best talent. Our commitment is to facilitate growth and success for both employers and job seekers.",
+});
+
+const languages = {
+  en: myObject.value,
+  th: {
+    src: "/src/assets/thai-flag.png",
+    language: "LAOS",
+    title: "ຍິນດີຕອນຮັບ GMS",
+    description:
+      "ຍິນດີເປັນໜ້າ 'About Us' ຂອງ Global Manpower Services. ພວກເຮົາມີຄວາມທີ່ສົມກັບການສະແດງການບໍລິການມັດຈຳ, ການຕັ້ງລູກຄ້າທີ່ມີຄວາມຄຸນຄ່າ ແລະ ອົງການທີ່ກໍານົດອື່ນໆ. ຄວາມຈຳເປັນແລະມີຄວາມປະຖິຍາທີ່ດີແກ່ບໍລິການການຫຼີ້ນຄົນທີ່ພວກເຮົາຍັງຢູ່.",
   },
 };
+
+let currentLanguage = ref(localStorage.language || "en");
+const isMobileMenuOpen = ref(false);
+
+const toggleNav = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
+
+const checked = ref(currentLanguage.value === "th");
+
+const toggleLanguage = () => {
+  // Toggle the language based on the switch state
+  currentLanguage.value = checked.value ? "th" : "en";
+  localStorage.language = currentLanguage.value;
+};
+
+const getTranslatedText = (key) => {
+  // Implement your translation logic here
+  return languages[currentLanguage.value][key];
+};
+
+onMounted(() => {
+  // Additional logic to handle language on mount if needed
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+.link-style {
+  text-decoration: none;
+  color: black;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #333;
+  padding: 15px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.logo {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li {
+  margin: 10px 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+}
+
+.language-switch button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.icon {
+  display: none;
+  cursor: pointer;
+}
+
+.icon div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Add this style to position details (links and icon) below the image and name */
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 20%;
+    text-align: left;
+    background-color: #333;
+    z-index: 1;
+    position: absolute;
+    top: 70px;
+    left: 400px;
+    margin: 12px;
+  }
+
+  .nav-links.show-mobile-menu {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  .navbar-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+  }
+
+  .icon {
+    display: block;
+  }
+
+  .responsive .icon div:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .responsive .icon div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .responsive .icon div:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+}
+</style>

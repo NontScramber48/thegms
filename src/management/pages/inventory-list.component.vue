@@ -154,7 +154,7 @@
 </template>
 
 <script>
-import pvMenuBar from "../../core/components/pv-menu-bar.vue";
+import pvMenuBar from "../../core/components/pv-menu-bar.vue"; 
 import pvTieredMenu from "../../core/components/pv-tiered-menu.vue";
 import pvLayoutMain from "../../core/components/pv-layout-main.vue";
 import ProductsApiService  from "../services/products-api.service.js";
